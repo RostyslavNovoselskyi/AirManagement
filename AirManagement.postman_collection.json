@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "72363dd4-99c3-4062-bf2b-cb7825813c78",
+		"name": "AirManagement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "airCompany",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{        \r\n        \"airCompanyName\": \"AirCompanySecond\",\r\n        \"companyType\": 1,\r\n        \"foundedAt\": \"2017-05-08\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/air",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"air"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Airplane",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"airplaneName\": \"Delta1\",\r\n    \"serialNumber\": 2,\r\n    \"airCompanyId\": {\"id\": 1},\r\n    \"numberOfFlight\": 6,\r\n    \"flightDistance\": 2000,\r\n    \"fuelCapacity\": 1000,\r\n    \"type\": \"some type\",\r\n    \"createdAt\": \"2018-01-05\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/airplane",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"airplane"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flight",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{        \r\n        \"flightStatus\": 2,\r\n        \"airCompanyId\": {\"id\": 1},\r\n        \"airplaneId\": {\"id\":2},\r\n        \"departureCountry\": \"Holand\",\r\n        \"destinationCountry\": \"Ukraine\",\r\n        \"distance\": 3000,\r\n        \"estimatedFlightTime\": 3,\r\n        \"delayStartAt\": \"2020-03-11 10:12:15\",\r\n        \"startAt\": \"2020-02-01 10:12:15\",\r\n        \"endAt\": \"2021-01-19 01:01:50\",\r\n        \"flightCreatedDate\": \"2019-03-10\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/flight/9",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flight",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FlightByStatus",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/flight/status",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flight",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
