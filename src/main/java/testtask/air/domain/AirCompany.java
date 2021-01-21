@@ -1,8 +1,9 @@
 package testtask.air.domain;
 
+import testtask.air.enums.CompanyType;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -11,24 +12,43 @@ public class AirCompany {
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
+    private String airCompanyName;
 
-    private String companyType;
-
-//    @ElementCollection(targetClass = CompanyType.class, fetch = FetchType.EAGER)
-//    @CollectionTable(name = "company_type", joinColumns = @JoinColumn(name = "aircompany_id"))
-//    @Enumerated(EnumType.STRING)
-//    private Set<CompanyType> companyTypes;
+    @Enumerated(EnumType.STRING)
+    private CompanyType companyType;
 
     private LocalDate foundedAt;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Airplane> airplanes;
+
+//    mappedBy = "airCompanyId",
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Flight> flights;
 
     public AirCompany() {
     }
 
-    public AirCompany(String name, String companyType, LocalDate foundedAt) {
-        this.name = name;
+    public AirCompany(String airCompanyName, CompanyType companyType, LocalDate foundedAt) {
+        this.airCompanyName = airCompanyName;
         this.companyType = companyType;
         this.foundedAt = foundedAt;
+    }
+
+    public Set<Flight> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(Set<Flight> flights){
+        this.flights = flights;
+    }
+
+    public Set<Airplane> getAirplanes() {
+        return airplanes;
+    }
+
+    public void setAirplanes(Set<Airplane> airplanes) {
+        this.airplanes = airplanes;
     }
 
     public Long getId() {
@@ -39,19 +59,19 @@ public class AirCompany {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getAirCompanyName () {
+        return airCompanyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAirCompanyName(String name) {
+        this.airCompanyName = name;
     }
 
-    public String getCompanyType() {
+    public CompanyType getCompanyType() {
         return companyType;
     }
 
-    public void setCompanyType(String companyType) {
+    public void setCompanyType(CompanyType companyType) {
         this.companyType = companyType;
     }
 

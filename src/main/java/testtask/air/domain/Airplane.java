@@ -2,28 +2,39 @@ package testtask.air.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "airplane")
-public class Airplaine {
+public class Airplane {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String airplaneName;
     private int serialNumber;
-    private Long airCompanyId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn()
+    private AirCompany airCompanyId;
+
     private int numberOfFlight;
     private int flightDistance;
     private int fuelCapacity;
     private String type;
     private LocalDate createdAt;
 
-    public Airplaine() {
+    @OneToMany
+    private Set<Flight> flights;
+
+    public Airplane() {
     }
 
-    public Airplaine(String airPlaneName, int serialNumber, Long airCompanyId, int numberOfFlight, int flightDistance, int fuelCapacity, String type, LocalDate createdAt) {
-        this.airplaneName = airPlaneName;
+    public Airplane(String airplaneName, int serialNumber, AirCompany airCompanyId,
+                    int numberOfFlight, int flightDistance, int fuelCapacity, String type,
+                    LocalDate createdAt
+    ) {
+        this.airplaneName = airplaneName;
         this.serialNumber = serialNumber;
         this.airCompanyId = airCompanyId;
         this.numberOfFlight = numberOfFlight;
@@ -33,12 +44,24 @@ public class Airplaine {
         this.createdAt = createdAt;
     }
 
-    public String getAirPlaneName() {
+    public Set<Flight> getFlights() {
+        return flights;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAirplaneName() {
         return airplaneName;
     }
 
-    public void setAirPlaneName(String airPlaneName) {
-        this.airplaneName = airPlaneName;
+    public void setAirplaneName(String airplaneName) {
+        this.airplaneName = airplaneName;
     }
 
     public int getSerialNumber() {
@@ -49,11 +72,11 @@ public class Airplaine {
         this.serialNumber = serialNumber;
     }
 
-    public Long getAirCompanyId() {
+    public AirCompany getAirCompanyId() {
         return airCompanyId;
     }
 
-    public void setAirCompanyId(Long airCompanyId) {
+    public void setAirCompanyId(AirCompany airCompanyId) {
         this.airCompanyId = airCompanyId;
     }
 

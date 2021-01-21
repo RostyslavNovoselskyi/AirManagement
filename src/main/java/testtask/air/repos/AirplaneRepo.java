@@ -1,9 +1,8 @@
 package testtask.air.repos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
-import testtask.air.domain.Airplaine;
+import testtask.air.domain.Airplane;
 
-public interface AirplaneRepo extends JpaRepository<Airplaine, Long> {
-    Airplaine findByAirplaneName(String airplaneName);
+public interface AirplaneRepo extends JpaRepository<Airplane, Long> {
+    Airplane findByid(Long id);
 }

@@ -15,7 +15,7 @@
 	<description>Project for synergyway test</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 
 	<dependencies>
@@ -50,18 +50,16 @@
             <artifactId>velocity-dep</artifactId>
             <version>1.4</version>
         </dependency>
-<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.molgenis/molgenis-data-import &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>org.molgenis</groupId>-->
-<!--			<artifactId>molgenis-data-import</artifactId>-->
-<!--			<version>8.4.5</version>-->
-<!--		</dependency>-->
-<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.security/spring-security-core &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.security</groupId>-->
-<!--			<artifactId>spring-security-core</artifactId>-->
-<!--			<version>5.4.2</version>-->
-<!--		</dependency>-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+        </dependency>
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>2.0.2</version>
+		</dependency>
 
 
 	</dependencies>
