@@ -1,30 +1,23 @@
-version: '3.7'
-
+version: '3'
 services:
-  #service 1: definition of mysql database
-  db:
-    image: mysql/mysql-server
-    command: --default-authentication-plugin=mysql_native_password
+  docker-my:
+    image: mysq:latest
     ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: "rootpass"
-      MYSQL_USER: "root"
-      MYSQL_PASSWORD: "61hovumo"
-
-  #service 2: definition of your spring-boot app
-  airservice:                        #it is just a name, which will be used only in this file.
-    image: air               #name of the image after dockerfile executes
-    container_name: air-app  #name of the container created from docker image
-    build:
-      context: .                          #docker file path (. means root directory)
-      dockerfile: Dockerfile              #docker file name
-    ports:
-      - "8080:8080"                       #docker containter port with your os port
+      - "3308:3306"
     restart: always
-    depends_on:                           #define dependencies of this app
-      - db                                #dependency name (which is defined with this name 'db' in this file earlier)
+    container_name: docker-my
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://my-remote-server-database:3306/db_air?autoReconnect=true&useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: 61hovumo
+      MYSQL_DATABASE: air-companies
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 61hovumo
+      MYSQL_ROOT_PASSWORD: root
+
+  air-companies:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8080"
+    restart: always
+    depends_on:
+      - docker-my
